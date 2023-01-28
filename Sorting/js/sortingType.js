@@ -67,3 +67,22 @@ var smallerNumbersThanCurrent = function (nums) {
 
 smallerNumbersThanCurrent([8, 1, 2, 2, 3]);
 smallerNumbersThanCurrent([6, 5, 4, 8]);
+
+// 1859. Sorting the Sentence
+
+const sortSentence = (s) => {
+  const arrc = s.split(" ").map((element, i) => {
+    return {
+      [element[element.length - 1]]: element.slice(0, element.length - 1),
+    };
+  });
+  const str = arrc
+    .sort((a, b) => {
+      return Number(Object.keys(a)[0]) - Number(Object.keys(b)[0]);
+    })
+    .map((el) => Object.values(el)[0])
+    .join(" ");
+  return str;
+};
+
+console.log(sortSentence("sentence4 a3 is2 This1"));

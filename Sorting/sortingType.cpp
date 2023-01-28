@@ -92,10 +92,37 @@ vector<int> smallerNumbersThanCurrent(vector<int> &nums)
     return nums;
 }
 
+// 1859. Sorting the Sentence
+
+string sortSentence(string s)
+{
+    map<int, string> m;
+    stringstream ss(s);
+    string word;
+    while (ss >> word)
+    {
+        m[word.back()] = word;
+    }
+    string str = "";
+    for (auto i : m)
+    {
+        i.second.pop_back();
+        str = str + " " + i.second;
+    }
+
+    str.erase(0, 1);
+    return str;
+}
+
 int main()
 {
-    vector<int> vt{8, 1, 2, 2, 3};
-    smallerNumbersThanCurrent(vt);
+
+    string str = "sentence4 a3 is2 This1";
+    cout << sortSentence(str) << endl;
+
+    // vector<int>
+    //     vt{8, 1, 2, 2, 3};
+    // smallerNumbersThanCurrent(vt);
 
     // cout << minimumSum(4009);
     // vector<int> v;
