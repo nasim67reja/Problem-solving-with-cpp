@@ -114,11 +114,39 @@ string sortSentence(string s)
     return str;
 }
 
+// 2500. Delete Greatest Value in Each Row
+#include <type_traits>
+int deleteGreatestValue(vector<vector<int>> &grid)
+{
+    int answer = 0;
+    for (int i = 0; i < grid.size(); i++)
+    {
+        if (typeid(grid[i]) == typeid(vector<int>))
+            sort(grid[i].begin(), grid[i].end());
+    }
+
+    for (int i = 0; i < grid[0].size(); i++)
+    {
+        int max = grid[0][i];
+        for (int j = 0; j < grid.size(); j++)
+        {
+            if (grid[j][i] > max)
+                max = grid[j][i];
+        }
+        answer += max;
+    }
+
+    return answer;
+}
+
 int main()
 {
 
-    string str = "sentence4 a3 is2 This1";
-    cout << sortSentence(str) << endl;
+    vector<vector<int>> vov = {{1, 2, 4}, {3, 3, 1}, {1, 2, 4}};
+    cout << deleteGreatestValue(vov) << endl;
+
+    // string str = "sentence4 a3 is2 This1";
+    // cout << sortSentence(str) << endl;
 
     // vector<int>
     //     vt{8, 1, 2, 2, 3};

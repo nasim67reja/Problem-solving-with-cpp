@@ -85,4 +85,28 @@ const sortSentence = (s) => {
   return str;
 };
 
-console.log(sortSentence("sentence4 a3 is2 This1"));
+// console.log(sortSentence("sentence4 a3 is2 This1"));
+
+// 2500. Delete Greatest Value in Each Row
+
+var deleteGreatestValue = function (grid) {
+  let answer = 0;
+
+  for (let val of grid) val.sort((a, b) => a - b);
+
+  for (let i = 0; i < grid[0].length; i++) {
+    let max = grid[0][i];
+    for (let val of grid) if (val[i] > max) max = val[i];
+
+    answer += max;
+  }
+
+  return answer;
+};
+
+console.log(
+  deleteGreatestValue([
+    [1, 2, 4],
+    [3, 3, 1],
+  ])
+);
