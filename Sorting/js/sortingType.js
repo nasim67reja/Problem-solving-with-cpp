@@ -139,3 +139,27 @@ var maxProduct = function (nums) {
   return (nums[nums.length - 1] - 1) * (nums[nums.length - 2] - 1);
 };
 // console.log(maxProduct([3, 4, 5, 2]));
+
+var sortTheStudents = function (score, k) {
+  for (let i = 1; i < score.length; i++) {
+    let vTemp = score[i];
+    let j = i - 1;
+    while (j >= 0) {
+      if (score[j][k] < vTemp[k]) score[j + 1] = score[j];
+      else break;
+      j--;
+    }
+    score[j + 1] = vTemp;
+  }
+  return score;
+};
+console.log(
+  sortTheStudents(
+    [
+      [10, 6, 9, 1],
+      [7, 5, 11, 2],
+      [4, 8, 3, 15],
+    ],
+    2
+  )
+);

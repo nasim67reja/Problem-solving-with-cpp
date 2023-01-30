@@ -182,11 +182,45 @@ int maxProduct(vector<int> &nums)
     sort(nums.begin(), nums.end());
     return (nums[nums.size() - 1] - 1) * (nums[nums.size() - 2] - 1);
 }
+
+// 2545. Sort the Students by Their Kth Score
+
+vector<vector<int>>
+sortTheStudents(vector<vector<int>> &score, int k)
+{
+    for (int i = 1; i < score.size(); i++)
+    {
+        vector<int> vTemp = score[i];
+        int j = i - 1;
+        while (j >= 0)
+        {
+            if (score[j][k] < vTemp[k])
+                score[j + 1] = score[j];
+            else
+                break;
+            j--;
+        }
+        score[j + 1] = vTemp;
+    }
+    return score;
+}
+
 int main()
 {
+    vector<vector<int>> vov = {{10, 6, 9, 1}, {7, 5, 11, 2}, {4, 8, 3, 15}};
+    vector<vector<int>> val = sortTheStudents(vov, 2);
 
-    vector<int> vi = {1, 5, 4, 5};
-    cout << maxProduct(vi);
+    for (auto val1 : val)
+    {
+        for (auto val2 : val1)
+        {
+            cout << val2 << " ";
+        }
+        cout << endl;
+    }
+
+    // vector<int> vi = {1, 5, 4, 5};
+    // cout << maxProduct(vi);
     // vector<string> vs = {"Mary", "John", "Emma"};
     // sortPeople(vs, vi);
     // vector<vector<int>> vov = {{1, 2, 4}, {3, 3, 1}, {1, 2, 4}};
