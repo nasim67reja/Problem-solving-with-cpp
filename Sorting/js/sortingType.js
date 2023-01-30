@@ -104,9 +104,38 @@ var deleteGreatestValue = function (grid) {
   return answer;
 };
 
-console.log(
-  deleteGreatestValue([
-    [1, 2, 4],
-    [3, 3, 1],
-  ])
-);
+// console.log(
+
+//   deleteGreatestValue([
+//     [1, 2, 4],
+//     [3, 3, 1],
+//   ])
+// );
+
+// 2037. Minimum Number of Moves to Seat Everyone
+var minMovesToSeat = function (seats, students) {
+  seats.sort((a, b) => a - b);
+  students.sort((a, b) => a - b);
+  let moves = 0;
+  for (let i = 0; i < seats.length; i++) {
+    moves = moves + Math.abs(students[i] - seats[i]);
+  }
+
+  return moves;
+};
+
+// console.log(minMovesToSeat([4, 1, 5, 9], [1, 3, 2, 6]));
+
+// 1913. Maximum Product Difference Between Two Pairs int main()
+var maxProductDifference = function (nums) {
+  nums.sort((a, b) => a - b);
+  return nums[nums.length - 1] * nums[nums.length - 2] - nums[0] * nums[1];
+};
+console.log(maxProductDifference([5, 6, 2, 7, 4]));
+
+// 1464. Maximum Product of Two Elements in an Array int main()
+var maxProduct = function (nums) {
+  nums.sort((a, b) => a - b);
+  return (nums[nums.length - 1] - 1) * (nums[nums.length - 2] - 1);
+};
+// console.log(maxProduct([3, 4, 5, 2]));

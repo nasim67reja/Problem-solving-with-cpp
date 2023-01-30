@@ -139,11 +139,59 @@ int deleteGreatestValue(vector<vector<int>> &grid)
     return answer;
 }
 
+// 2037. Minimum Number of Moves to Seat Everyone
+
+int minMovesToSeat(vector<int> &seats, vector<int> &students)
+{
+    sort(seats.begin(), seats.end());
+    sort(students.begin(), students.end());
+    int moves = 0;
+    for (int i = 0; i < seats.size(); i++)
+    {
+        moves = moves + abs(students[i] - seats[i]);
+    }
+    return moves;
+}
+
+// 2418. Sort the People
+
+vector<string> sortPeople(vector<string> &names, vector<int> &heights)
+{
+    map<int, string> m;
+    for (int i = 0; i < heights.size(); i++)
+        m[heights[i]] = names[i];
+    names.clear();
+    for (auto val : m)
+        names.insert(names.begin(), val.second);
+
+    return names;
+}
+
+// 1913. Maximum Product Difference Between Two Pairs int main()
+
+int maxProductDifference(vector<int> &nums)
+{
+
+    sort(nums.begin(), nums.end());
+    return (nums[nums.size() - 1] * nums[nums.size() - 2]) - (nums[0] * nums[1]);
+}
+
+// 1464. Maximum Product of Two Elements in an Array int main()
+int maxProduct(vector<int> &nums)
+{
+    sort(nums.begin(), nums.end());
+    return (nums[nums.size() - 1] - 1) * (nums[nums.size() - 2] - 1);
+}
 int main()
 {
 
-    vector<vector<int>> vov = {{1, 2, 4}, {3, 3, 1}, {1, 2, 4}};
-    cout << deleteGreatestValue(vov) << endl;
+    vector<int> vi = {1, 5, 4, 5};
+    cout << maxProduct(vi);
+    // vector<string> vs = {"Mary", "John", "Emma"};
+    // sortPeople(vs, vi);
+    // vector<vector<int>> vov = {{1, 2, 4}, {3, 3, 1}, {1, 2, 4}};
+    // cout << minMovesToSeat(vov[0], vov[1]);
+    // cout << deleteGreatestValue(vov) << endl;
 
     // string str = "sentence4 a3 is2 This1";
     // cout << sortSentence(str) << endl;
