@@ -183,10 +183,24 @@ int maxProduct(vector<int> &nums)
     return (nums[nums.size() - 1] - 1) * (nums[nums.size() - 2] - 1);
 }
 
+// 2089. Find Target Indices After Sorting Array
+
+vector<int> targetIndices(vector<int> &nums, int target)
+{
+    sort(nums.begin(), nums.end());
+    vector<int> v;
+    for (int i = 0; i < nums.size(); i++)
+        if (nums[i] == target)
+            v.push_back(i);
+
+    return v;
+}
+
+//  🔥🔥🔥🔥🔥🔥 Medium Problem 🔥🔥🔥🔥🔥🔥🔥
+
 // 2545. Sort the Students by Their Kth Score
 
-vector<vector<int>>
-sortTheStudents(vector<vector<int>> &score, int k)
+vector<vector<int>> sortTheStudents(vector<vector<int>> &score, int k)
 {
     for (int i = 1; i < score.size(); i++)
     {
@@ -205,19 +219,53 @@ sortTheStudents(vector<vector<int>> &score, int k)
     return score;
 }
 
+// 1637. Widest Vertical Area Between Two Points Containing No Points
+
+int maxWidthOfVerticalArea(vector<vector<int>> &points)
+{
+    set<int> s;
+    vector<int> v;
+    for (int i = 0; i < points.size(); i++)
+        s.insert(points[i][0]);
+
+    for (auto val : s)
+        v.push_back(val);
+
+    int maxDif = 0;
+
+    for (int i = 0; i < v.size() - 1; i++)
+        if ((v[i + 1] - v[i]) > maxDif)
+            maxDif = v[i + 1] - v[i];
+    return maxDif;
+}
+
+// 1877. Minimize Maximum Pair Sum in Array
+
+int minPairSum(vector<int> &nums)
+{
+    vector<pair<int, int>> vp;
+
+    sort(nums.begin(), nums.end());
+    int minSum = nums[0] + nums[nums.size() - 1];
+
+    for (int i = 0; i < nums.size() / 2; i++)
+    {
+        if ((nums[i] + nums[nums.size() - i - 1]) > minSum)
+            minSum = nums[i] + nums[nums.size() - i - 1];
+    }
+    return minSum;
+    // vp.push_back({nums[i], nums[nums.size() - i - 1]});
+
+    // // return vp[0].first + vp[0].second;
+}
+
 int main()
 {
-    vector<vector<int>> vov = {{10, 6, 9, 1}, {7, 5, 11, 2}, {4, 8, 3, 15}};
-    vector<vector<int>> val = sortTheStudents(vov, 2);
+    vector<int> v = {1, 2, 5, 2, 3};
+    targetIndices(v, 2);
 
-    for (auto val1 : val)
-    {
-        for (auto val2 : val1)
-        {
-            cout << val2 << " ";
-        }
-        cout << endl;
-    }
+    // vector<vector<int>> vov = {{3, 1}, {9, 0}, {1, 0}, {1, 4}, {5, 3}, {8, 8}};
+    // cout << maxWidthOfVerticalArea(vov);
 
     // vector<int> vi = {1, 5, 4, 5};
     // cout << maxProduct(vi);

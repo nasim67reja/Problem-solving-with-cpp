@@ -131,7 +131,7 @@ var maxProductDifference = function (nums) {
   nums.sort((a, b) => a - b);
   return nums[nums.length - 1] * nums[nums.length - 2] - nums[0] * nums[1];
 };
-console.log(maxProductDifference([5, 6, 2, 7, 4]));
+// console.log(maxProductDifference([5, 6, 2, 7, 4]));
 
 // 1464. Maximum Product of Two Elements in an Array int main()
 var maxProduct = function (nums) {
@@ -139,6 +139,21 @@ var maxProduct = function (nums) {
   return (nums[nums.length - 1] - 1) * (nums[nums.length - 2] - 1);
 };
 // console.log(maxProduct([3, 4, 5, 2]));
+
+// 2089. Find Target Indices After Sorting Array
+
+var targetIndices = function (nums, target) {
+  nums.sort((a, b) => a - b);
+  let arr = [];
+  for (let i = 0; i < nums.length; i++) if (nums[i] == target) arr.push(i);
+
+  return arr;
+};
+console.log(targetIndices([1, 2, 5, 2, 3], 2));
+
+//  🔥🔥🔥🔥🔥🔥 Medium Problem 🔥🔥🔥🔥🔥🔥🔥
+
+// 2545. Sort the Students by Their Kth Score
 
 var sortTheStudents = function (score, k) {
   for (let i = 1; i < score.length; i++) {
@@ -153,13 +168,49 @@ var sortTheStudents = function (score, k) {
   }
   return score;
 };
-console.log(
-  sortTheStudents(
-    [
-      [10, 6, 9, 1],
-      [7, 5, 11, 2],
-      [4, 8, 3, 15],
-    ],
-    2
-  )
-);
+// console.log(
+//   sortTheStudents(
+//     [
+//       [10, 6, 9, 1],
+//       [7, 5, 11, 2],
+//       [4, 8, 3, 15],
+//     ],
+//     2
+//   )
+// );
+
+// 1637. Widest Vertical Area Between Two Points Containing No Points
+
+var maxWidthOfVerticalArea = function (points) {
+  let newArr = points.map((el) => el[0]).sort((a, b) => a - b);
+
+  let maxDif = 0;
+
+  for (let i = 0; i < newArr.length - 1; i++)
+    if (newArr[i + 1] - newArr[i] > maxDif) maxDif = newArr[i + 1] - newArr[i];
+  return maxDif;
+};
+// console.log(
+//   maxWidthOfVerticalArea([
+//     [8, 7],
+//     [9, 9],
+//     [7, 4],
+//     [9, 7],
+//   ])
+// );
+
+// 1877. Minimize Maximum Pair Sum in Array
+
+var minPairSum = function (nums) {
+  //  sort(nums.begin(), nums.end());
+  nums.sort((a, b) => a - b);
+  let minSum = nums[0] + nums[nums.length - 1];
+
+  for (let i = 0; i < nums.length / 2; i++) {
+    if (nums[i] + nums[nums.length - i - 1] > minSum)
+      minSum = nums[i] + nums[nums.length - i - 1];
+  }
+  return minSum;
+};
+
+// console.log(minPairSum([3, 5, 4, 2, 4, 6]));
