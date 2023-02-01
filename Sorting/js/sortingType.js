@@ -149,7 +149,40 @@ var targetIndices = function (nums, target) {
 
   return arr;
 };
-console.log(targetIndices([1, 2, 5, 2, 3], 2));
+// console.log(targetIndices([1, 2, 5, 2, 3], 2));
+
+// 561. Array Partition
+
+var arrayPairSum = function (nums) {
+  let sum = 0;
+  nums.sort((a, b) => a - b);
+  for (let i = 0; i < nums.length; i++) if (i % 2 == 0) sum += nums[i];
+
+  return sum;
+};
+// console.log(arrayPairSum([1, 4, 3, 2]));
+
+// 905. Sort Array By Parity
+
+var sortArrayByParity = function (nums) {
+  for (let i = 1; i < nums.length; i++) {
+    let temp = nums[i];
+    let j = i - 1;
+
+    if (temp % 2 != 0) continue;
+    else {
+      while (j >= 0) {
+        if (nums[j] > temp || nums[j] % 2 != 0) nums[j + 1] = nums[j];
+        else break;
+        j--;
+      }
+      nums[j + 1] = temp;
+    }
+  }
+
+  return nums;
+};
+console.log(sortArrayByParity([3, 1, 2, 4]));
 
 //  🔥🔥🔥🔥🔥🔥 Medium Problem 🔥🔥🔥🔥🔥🔥🔥
 

@@ -196,11 +196,75 @@ vector<int> targetIndices(vector<int> &nums, int target)
     return v;
 }
 
+// 561. Array Partition
+
+int arrayPairSum(vector<int> &nums)
+{
+    int sum = 0;
+    sort(nums.begin(), nums.end());
+    for (int i = 0; i < nums.size(); i++)
+        if ((i % 2) == 0)
+            sum += nums[i];
+
+    return sum;
+}
+
+// 905. Sort Array By Parity
+
+vector<int>
+sortArrayByParity(vector<int> &nums)
+{
+    for (int i = 1; i < nums.size(); i++)
+    {
+        int temp = nums[i];
+        int j = i - 1;
+
+        if (temp % 2 != 0)
+            continue;
+        else
+        {
+            while (j >= 0)
+            {
+
+                if (nums[j] > temp || nums[j] % 2 != 0)
+                    nums[j + 1] = nums[j];
+                else
+                    break;
+                j--;
+            }
+            nums[j + 1] = temp;
+        }
+    }
+
+    return nums;
+}
+
+// 2363. Merge Similar Items
+vector<vector<int>> mergeSimilarItems(vector<vector<int>> &items1, vector<vector<int>> &items2)
+{
+    vector<vector<int>> vov;
+    for (int i = 0; i < items1.size(); i++)
+    {
+        vector<int> v;
+
+        for (int j = 0; j < items2.size(); j++)
+        {
+            if (items1[i][0] == items2[j][0])
+            {
+                v.push_back(items1[i][0]);
+                v.push_back(items1[i][1] + items2[i][1]);
+                break;
+            }
+        }
+    }
+}
+
 //  🔥🔥🔥🔥🔥🔥 Medium Problem 🔥🔥🔥🔥🔥🔥🔥
 
 // 2545. Sort the Students by Their Kth Score
 
-vector<vector<int>> sortTheStudents(vector<vector<int>> &score, int k)
+vector<vector<int>>
+sortTheStudents(vector<vector<int>> &score, int k)
 {
     for (int i = 1; i < score.size(); i++)
     {
@@ -261,8 +325,11 @@ int minPairSum(vector<int> &nums)
 
 int main()
 {
-    vector<int> v = {1, 2, 5, 2, 3};
-    targetIndices(v, 2);
+
+    vector<int> v = {3, 1, 2, 4};
+    sortArrayByParity(v);
+    // cout << arrayPairSum(v);
+    // targetIndices(v, 2);
 
     // vector<vector<int>> vov = {{3, 1}, {9, 0}, {1, 0}, {1, 4}, {5, 3}, {8, 8}};
     // cout << maxWidthOfVerticalArea(vov);
