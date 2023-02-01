@@ -243,20 +243,15 @@ sortArrayByParity(vector<int> &nums)
 vector<vector<int>> mergeSimilarItems(vector<vector<int>> &items1, vector<vector<int>> &items2)
 {
     vector<vector<int>> vov;
-    for (int i = 0; i < items1.size(); i++)
-    {
-        vector<int> v;
+    map<int, int> m;
+    for (auto val : items1)
+        m[val[0]] += val[1];
+    for (auto val : items2)
+        m[val[0]] += val[1];
 
-        for (int j = 0; j < items2.size(); j++)
-        {
-            if (items1[i][0] == items2[j][0])
-            {
-                v.push_back(items1[i][0]);
-                v.push_back(items1[i][1] + items2[i][1]);
-                break;
-            }
-        }
-    }
+    for (auto val : m)
+        vov.push_back({val.first, val.second});
+    return vov;
 }
 
 //  🔥🔥🔥🔥🔥🔥 Medium Problem 🔥🔥🔥🔥🔥🔥🔥
@@ -323,45 +318,32 @@ int minPairSum(vector<int> &nums)
     // // return vp[0].first + vp[0].second;
 }
 
+// 1. Two Sum
+
+vector<int> twoSum(vector<int> &nums, int target)
+{
+    vector<int> v;
+    for (int i = 0; i < nums.size(); i++)
+    {
+        int num = target - nums[i];
+
+        for (int j = i + 1; j < nums.size(); j++)
+        {
+            if (num == nums[j])
+            {
+                v.push_back(i);
+                v.push_back(j);
+            }
+        }
+    }
+
+    return v;
+}
+
 int main()
 {
+    vector<int> v = {3, 3};
+    twoSum(v, 6);
 
-    vector<int> v = {3, 1, 2, 4};
-    sortArrayByParity(v);
-    // cout << arrayPairSum(v);
-    // targetIndices(v, 2);
-
-    // vector<vector<int>> vov = {{3, 1}, {9, 0}, {1, 0}, {1, 4}, {5, 3}, {8, 8}};
-    // cout << maxWidthOfVerticalArea(vov);
-
-    // vector<int> vi = {1, 5, 4, 5};
-    // cout << maxProduct(vi);
-    // vector<string> vs = {"Mary", "John", "Emma"};
-    // sortPeople(vs, vi);
-    // vector<vector<int>> vov = {{1, 2, 4}, {3, 3, 1}, {1, 2, 4}};
-    // cout << minMovesToSeat(vov[0], vov[1]);
-    // cout << deleteGreatestValue(vov) << endl;
-
-    // string str = "sentence4 a3 is2 This1";
-    // cout << sortSentence(str) << endl;
-
-    // vector<int>
-    //     vt{8, 1, 2, 2, 3};
-    // smallerNumbersThanCurrent(vt);
-
-    // cout << minimumSum(4009);
-    // vector<int> v;
-    // v.push_back(4);
-    // v.push_back(7);
-    // v.push_back(2);
-    // v.push_back(4);
-    // v.push_back(21);
-
-    // vector<int> rv = reverse(v);
-    // cout << "Before Reversing ";
-    // printVector(v);
-    // cout << "After Reversing ";
-    // printVector(rv);
-    // cout << containsDuplicate(v) << endl;
     return 0;
 }

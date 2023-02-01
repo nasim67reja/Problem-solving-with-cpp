@@ -182,7 +182,7 @@ var sortArrayByParity = function (nums) {
 
   return nums;
 };
-console.log(sortArrayByParity([3, 1, 2, 4]));
+// console.log(sortArrayByParity([3, 1, 2, 4]));
 
 //  🔥🔥🔥🔥🔥🔥 Medium Problem 🔥🔥🔥🔥🔥🔥🔥
 
@@ -247,3 +247,22 @@ var minPairSum = function (nums) {
 };
 
 // console.log(minPairSum([3, 5, 4, 2, 4, 6]));
+
+// 1. Two Sum
+var twoSum = function (nums, target) {
+  let arr = [];
+  for (let i = 0; i < nums.length; i++) {
+    let num = target - nums[i];
+
+    for (let j = i + 1; j < nums.length; j++) {
+      if (num == nums[j]) {
+        arr.push(i);
+        arr.push(j);
+      }
+    }
+  }
+
+  return arr;
+};
+
+console.log(twoSum([2, 7, 11, 15], 9));
