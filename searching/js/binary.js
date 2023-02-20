@@ -27,6 +27,22 @@ var peakIndexInMountainArray = function (arr) {
 
   return s;
 };
-console.log(peakIndexInMountainArray([3, 4, 5, 1]));
+// console.log(peakIndexInMountainArray([3, 4, 5, 1]));
 
 // 2389. Longest Subsequence With Limited Sum
+
+//  👉👉👉👉👉👉👉  Medium
+// 34. Find First and Last Position of Element in Sorted Array
+
+// var searchRange = function (nums, target) {
+//   let arr = [];
+//   arr.push(nums.findIndex((el) => el === target));
+
+//   return [nums.indexOf(target), nums.lastIndexOf(target)];
+// };
+
+const searchRange = (nums, target) => [
+  nums.indexOf(target),
+  nums.lastIndexOf(target),
+];
+console.log(searchRange([5, 7, 7, 8, 8, 10], 6));

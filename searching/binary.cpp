@@ -95,14 +95,14 @@ vector<int> intersection(vector<int> &nums1, vector<int> &nums2)
     return v;
 }
 
-int main()
-{
-    vector<int> v1 = {1, 2, 2, 1};
-    vector<int> v2 = {2, 2}; // 4,4,8,9,9
+// int main()
+// {
+//     vector<int> v1 = {1, 2, 2, 1};
+//     vector<int> v2 = {2, 2}; // 4,4,8,9,9
 
-    intersection(v1, v2);
-    return 0;
-}
+//     intersection(v1, v2);
+//     return 0;
+// }
 
 // //////// 🔥🔥🔥🔥🔥🔥🔥🔥🔥 Medium
 // 852. Peak Index in a Mountain Array
@@ -120,3 +120,42 @@ int main()
 
 //     return s;
 // }
+
+// 34. Find First and Last Position of Element in Sorted Array
+
+vector<int> searchRange(vector<int> &nums, int target)
+{
+    vector<int> v;
+    // first occurance
+    auto it = find(nums.begin(), nums.end(), target);
+    if (it != nums.end())
+        v.push_back(it - nums.begin());
+    else
+        v.push_back(-1);
+
+    // last occurance
+    int s = 0, e = nums.size() - 1, mid = s + (e - s) / 2, ans = -1;
+    while (e >= s)
+    {
+        if (nums[mid] == target)
+        {
+            ans = mid;
+            s = mid + 1;
+        }
+        else if (target > nums[mid])
+            s = mid + 1;
+        else
+            e = mid - 1;
+        mid = s + (e - s) / 2;
+    }
+    v.push_back(ans);
+    return v;
+}
+
+int main()
+{
+    vector<int> v1 = {};
+
+    searchRange(v1, 0);
+    return 0;
+}
