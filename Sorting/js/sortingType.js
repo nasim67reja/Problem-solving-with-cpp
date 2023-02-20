@@ -184,6 +184,18 @@ var sortArrayByParity = function (nums) {
 };
 // console.log(sortArrayByParity([3, 1, 2, 4]));
 
+// 1051. Height Checker
+var heightChecker = function (heights) {
+  let count = 0;
+  let arr = [...heights];
+  heights.sort((a, b) => a - b);
+  for (let i = 0; i < heights.length; i++) if (heights[i] != arr[i]) count++;
+
+  return count;
+};
+
+console.log(heightChecker([1, 1, 4, 2, 1, 3]));
+
 //  🔥🔥🔥🔥🔥🔥 Medium Problem 🔥🔥🔥🔥🔥🔥🔥
 
 // 2545. Sort the Students by Their Kth Score
@@ -248,6 +260,8 @@ var minPairSum = function (nums) {
 
 // console.log(minPairSum([3, 5, 4, 2, 4, 6]));
 
+// 🔥🔥🔥🔥🔥🔥🔥🔥🔥 Interview Question
+
 // 1. Two Sum
 var twoSum = function (nums, target) {
   let arr = [];
@@ -265,4 +279,41 @@ var twoSum = function (nums, target) {
   return arr;
 };
 
-console.log(twoSum([2, 7, 11, 15], 9));
+// console.log(twoSum([2, 7, 11, 15], 9));
+
+// 13. Roman to Integer
+
+var romanToInt = function (s) {
+  let arr = ["I", "V", "X", "L", "C", "D", "M"];
+
+  let count = 0;
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === "I" && s[i + 1] === "V") {
+      count += 4;
+      i++;
+    } else if (s[i] === "I" && s[i + 1] === "X") {
+      count += 9;
+      i++;
+    } else if (s[i] === "I") count++;
+    else if (s[i] === "V") count += 5;
+    else if (s[i] === "X" && s[i + 1] === "L") {
+      count += 40;
+      i++;
+    } else if (s[i] === "X" && s[i + 1] === "C") {
+      count += 90;
+      i++;
+    } else if (s[i] === "X") count += 10;
+    else if (s[i] === "L") count += 50;
+    else if (s[i] === "C" && s[i + 1] === "D") {
+      count += 400;
+      i++;
+    } else if (s[i] === "C" && s[i + 1] === "M") {
+      count += 900;
+      i++;
+    } else if (s[i] === "C") count += 100;
+    else if (s[i] === "D") count += 500;
+    else if (s[i] === "M") count += 1000;
+  }
+  return count;
+};
+console.log(romanToInt("IX"));

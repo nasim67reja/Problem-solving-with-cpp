@@ -253,6 +253,25 @@ vector<vector<int>> mergeSimilarItems(vector<vector<int>> &items1, vector<vector
         vov.push_back({val.first, val.second});
     return vov;
 }
+// 1051. Height Checker
+int heightChecker(vector<int> &heights)
+{
+    int count = 0;
+    vector<int> v = heights;
+    sort(heights.begin(), heights.end());
+    for (int i = 0; i < heights.size(); i++)
+        if (heights[i] != v[i])
+            count++;
+
+    return count;
+}
+
+int main()
+{
+    vector<int> v = {1, 2, 3, 4, 5};
+    cout << heightChecker(v);
+    return 0;
+}
 
 //  🔥🔥🔥🔥🔥🔥 Medium Problem 🔥🔥🔥🔥🔥🔥🔥
 
@@ -318,6 +337,8 @@ int minPairSum(vector<int> &nums)
     // // return vp[0].first + vp[0].second;
 }
 
+// 🔥🔥🔥🔥🔥🔥🔥🔥🔥 Interview Question
+
 // 1. Two Sum
 
 vector<int> twoSum(vector<int> &nums, int target)
@@ -340,10 +361,32 @@ vector<int> twoSum(vector<int> &nums, int target)
     return v;
 }
 
-int main()
-{
-    vector<int> v = {3, 3};
-    twoSum(v, 6);
+// 13. Roman to Integer
 
-    return 0;
+int romanToInt(string s)
+{
+    int ans = 0;
+    unordered_map<char, int> mp{
+        {'I', 1}, {'V', 5}, {'X', 10}, {'L', 50}, {'C', 100}, {'D', 500}, {'M', 1000}};
+
+    for (int i = 0; i < s.size(); i++)
+    {
+        if (mp[s[i]] < mp[s[i + 1]])
+        {
+            ans = ans - mp[s[i]];
+        }
+        else
+        {
+            ans = ans + mp[s[i]];
+        }
+    }
+    return ans;
 }
+
+// int main()
+// {
+//     string v = "IV";
+//     cout << romanToInt(v);
+
+//     return 0;
+// }
