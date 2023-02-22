@@ -45,4 +45,24 @@ const searchRange = (nums, target) => [
   nums.indexOf(target),
   nums.lastIndexOf(target),
 ];
-console.log(searchRange([5, 7, 7, 8, 8, 10], 6));
+// console.log(searchRange([5, 7, 7, 8, 8, 10], 6));
+
+var missingNumber = function (nums) {
+  // Binary search
+  // nums.sort((a, b) => a - b);
+  // let s = 0,
+  //   e = nums.length - 1,
+  //   mid = Math.floor(s + (e - s) / 2);
+
+  // while (s <= e) {
+  //   if (nums[mid] <= mid) s = mid + 1;
+  //   else e = mid - 1;
+  //   mid = Math.floor(s + (e - s) / 2);
+  // }
+  // return s;
+
+  // broute force solution
+  let n = nums.length;
+  return (n * n + n) / 2 - nums.reduce((acc, val) => acc + val, 0);
+};
+console.log(missingNumber([0, 1]));

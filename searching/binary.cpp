@@ -152,10 +152,81 @@ vector<int> searchRange(vector<int> &nums, int target)
     return v;
 }
 
+// find element in a rotated sorted array
+
+int search(vector<int> &nums, int target)
+{
+
+    // find pivet element
+    int sp = 0, ep = nums.size() - 1, midp = sp + (ep - sp) / 2;
+
+    while (ep > sp)
+    {
+        if (nums[midp] >= nums[0])
+            sp = midp + 1;
+        else
+            ep = midp;
+        midp = sp + (ep - sp) / 2;
+    }
+    int pivot = sp;
+
+    // now find the actual element
+
+    int s = 0, e = nums.size() - 1;
+
+    if (target == nums[pivot])
+        return pivot;
+
+    if (nums[pivot] <= target && target <= nums[nums.size() - 1])
+        s = pivot;
+    else
+        e = pivot - 1;
+
+    int mid = s + (e - s) / 2;
+
+    while (s <= e)
+    {
+        if (nums[mid] == target)
+            return mid;
+        else if (target > nums[mid])
+            s = mid + 1;
+        else
+            e = mid - 1;
+
+        mid = s + (e - s) / 2;
+    }
+    return -1;
+}
+
+// 268. Missing Number
+
+int missingNumber(vector<int> &nums)
+{
+
+    // Binary search
+
+    sort(nums.begin(), nums.end());
+    int s = 0, e = nums.size() - 1, mid = s + (e - s) / 2;
+
+    while (s <= e)
+    {
+        if (nums[mid] <= mid)
+            s = mid + 1;
+        else
+            e = mid - 1;
+        mid = s + (e - s) / 2;
+    }
+    return s;
+
+    // broute force solution
+    //     int n = nums.size();
+    //     return ((n * n + n) / 2) - accumulate(nums.begin(), nums.end(), 0);
+}
+
 int main()
 {
-    vector<int> v1 = {};
+    vector<int> v1 = {9, 6, 4, 2, 3, 5, 7, 0, 1};
+    cout << missingNumber(v1) << endl;
 
-    searchRange(v1, 0);
     return 0;
 }
