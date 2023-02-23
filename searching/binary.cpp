@@ -223,10 +223,153 @@ int missingNumber(vector<int> &nums)
     //     return ((n * n + n) / 2) - accumulate(nums.begin(), nums.end(), 0);
 }
 
+// 875. Koko Eating Bananas
+
+// long hour = 0;
+// for (int i = 0; i < piles.size(); i++)
+// {
+//     if (mid >= piles[i])
+//         hour++;
+//     else
+//     {
+//         int remainingPart = piles[i];
+//         while (remainingPart > 0)
+//         {
+//             hour++;
+//             remainingPart -= mid;
+//         }
+//     }
+//     if (hour > h)
+//         return false;
+// }
+// return true;
+
+bool isPossible(vector<int> &piles, int h, int mid)
+{
+
+    long hours = 0;
+    for (int i : piles)
+    {
+        hours += i / mid;
+        if (i % mid != 0)
+            hours++;
+    }
+    return hours <= h;
+}
+int minEatingSpeed(vector<int> &piles, int h)
+{
+
+    int s = 1, ans = -1;
+    int e = 1e9;
+
+    int mid = s + (e - s) / 2;
+
+    while (e >= s)
+    {
+        if (isPossible(piles, h, mid))
+        {
+            ans = mid;
+            e = mid - 1;
+        }
+        else
+            s = mid + 1;
+        mid = s + (e - s) / 2;
+    }
+    return ans;
+}
+
+// 704. Binary Search
+
+int searchb(vector<int> &nums, int target)
+{
+    int s = 0, e = nums.size() - 1,
+        mid = s + (e - s) / 2;
+    while (s <= e)
+    {
+        if (nums[mid] == target)
+            return mid;
+        else if (target > nums[mid])
+            s = mid + 1;
+        else
+            e = mid - 1;
+        mid = s + (e - s) / 2;
+    }
+    return -1;
+}
+
+// 2540. Minimum Common Value
+
+int getCommon(vector<int> &nums1, vector<int> &nums2)
+{
+    sort(nums1.begin(), nums1.end());
+    for (int val : nums1)
+    {
+        int s = 0, e = nums2.size() - 1, mid = s + (e - s) / 2;
+        while (s <= e)
+        {
+            if (nums2[mid] == val)
+                return nums2[mid];
+            else if (val > nums2[mid])
+                s = mid + 1;
+            else
+                e = mid - 1;
+            mid = s + (e - s) / 2;
+        }
+    }
+    return -1;
+}
+
+// 441. Arranging Coins
+
+int arrangeCoins(int n)
+{
+    long long int s = 0,
+                  e = n, mid = s + (e - s) / 2, ans = 1;
+
+    while (s <= e)
+    {
+        long long int p = (mid * mid + mid) / 2;
+        if (p >= n)
+        {
+            ans = mid;
+            if (p > n)
+                ans--;
+            e = mid - 1;
+        }
+        else
+            s = mid + 1;
+        mid = s + (e - s) / 2;
+    }
+    return ans;
+    // 1804289383
+}
+
+// 744. Find Smallest Letter Greater Than Target
+
+char nextGreatestLetter(vector<char> &letters, char target)
+
+{
+    int s = 0, e = letters.size() - 1, mid = s + (e - s) / 2;
+    int ans = letters[0];
+    while (s <= e)
+    {
+        if (target < letters[mid])
+        {
+            ans = letters[mid];
+            e = mid - 1;
+        }
+        else
+            s = mid + 1;
+
+        mid = s + (e - s) / 2;
+    }
+    return ans;
+}
+
 int main()
 {
-    vector<int> v1 = {9, 6, 4, 2, 3, 5, 7, 0, 1};
-    cout << missingNumber(v1) << endl;
+    vector<char> v1 = {'x', 'x', 'y', 'y'};
+    cout << nextGreatestLetter(v1, 'z') << endl;
 
     return 0;
 }

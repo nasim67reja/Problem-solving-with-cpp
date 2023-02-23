@@ -65,4 +65,82 @@ var missingNumber = function (nums) {
   let n = nums.length;
   return (n * n + n) / 2 - nums.reduce((acc, val) => acc + val, 0);
 };
-console.log(missingNumber([0, 1]));
+// console.log(missingNumber([0, 1]));
+
+// 704. Binary Search
+
+var search = function (nums, target) {
+  let s = 0,
+    e = nums.length - 1,
+    mid = Math.floor(s + (e - s) / 2);
+  while (s <= e) {
+    if (nums[mid] == target) return mid;
+    else if (target > nums[mid]) s = mid + 1;
+    else e = mid - 1;
+    mid = Math.floor(s + (e - s) / 2);
+  }
+  return -1;
+};
+// console.log(search([-1, 0, 3, 5, 9, 12], 9));
+
+// 2540. Minimum Common Value
+
+var getCommon = function (nums1, nums2) {
+  nums1.sort((a, b) => a - b);
+  for (const val of nums1) {
+    let s = 0,
+      e = nums2.length - 1,
+      mid = Math.floor(s + (e - s) / 2);
+    while (s <= e) {
+      if (nums2[mid] == val) return nums2[mid];
+      else if (val > nums2[mid]) s = mid + 1;
+      else e = mid - 1;
+      mid = Math.floor(s + (e - s) / 2);
+    }
+  }
+  return -1;
+};
+
+// 441. Arranging Coins
+
+var arrangeCoins = function (n) {
+  let s = 0,
+    e = n,
+    mid = Math.floor(s + (e - s) / 2),
+    ans = 1;
+
+  while (s <= e) {
+    let p = (mid * mid + mid) / 2;
+    if (p >= n) {
+      ans = mid;
+      if (p > n) ans--;
+      e = mid - 1;
+    } else s = mid + 1;
+    mid = Math.floor(s + (e - s) / 2);
+  }
+  return ans;
+};
+// console.log(arrangeCoins(1804289383));
+
+// 744. Find Smallest Letter Greater Than Target
+
+var nextGreatestLetter = function (letters, target) {
+  let s = 0,
+    e = letters.length - 1,
+    mid = Math.floor(s + (e - s) / 2);
+  let ans = letters[0];
+  while (s <= e) {
+    let t = target.charCodeAt(0);
+    let mn = letters[mid].charCodeAt(0);
+
+    if (t < mn) {
+      ans = letters[mid];
+      e = mid - 1;
+    } else s = mid + 1;
+
+    mid = Math.floor(s + (e - s) / 2);
+  }
+  return ans;
+};
+
+console.log(nextGreatestLetter(["c", "f", "j"], "a"));
