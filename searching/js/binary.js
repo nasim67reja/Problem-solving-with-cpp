@@ -143,4 +143,24 @@ var nextGreatestLetter = function (letters, target) {
   return ans;
 };
 
-console.log(nextGreatestLetter(["c", "f", "j"], "a"));
+// console.log(nextGreatestLetter(["c", "f", "j"], "a"));
+
+// 35. Search Insert Position
+
+var searchInsert = function (nums, target) {
+  // return lower_bound(nums.begin(), nums.end(), target) - nums.begin();
+
+  let s = 0,
+    e = nums.length - 1,
+    mid = Math.floor(s + (e - s) / 2),
+    ans = nums.length;
+  while (s <= e) {
+    if (nums[mid] >= target) {
+      ans = mid;
+      e = mid - 1;
+    } else s = mid + 1;
+
+    mid = Math.floor(s + (e - s) / 2);
+  }
+  return ans;
+};

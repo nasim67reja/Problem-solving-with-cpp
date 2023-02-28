@@ -366,10 +366,34 @@ char nextGreatestLetter(vector<char> &letters, char target)
     return ans;
 }
 
+// 35. Search Insert Position
+
+int searchInsert(vector<int> &nums, int target)
+{
+    // return lower_bound(nums.begin(), nums.end(), target) - nums.begin();
+
+    int s = 0, e = nums.size() - 1, mid = s + (e - s) / 2, ans = nums.size();
+    while (s <= e)
+    {
+        if (nums[mid] >= target)
+        {
+            ans = mid;
+            e = mid - 1;
+        }
+        else
+            s = mid + 1;
+
+        mid = s + (e - s) / 2;
+    }
+    return ans;
+}
+
 int main()
 {
-    vector<char> v1 = {'x', 'x', 'y', 'y'};
-    cout << nextGreatestLetter(v1, 'z') << endl;
+    vector<int> v1 = {1, 3, 5, 6};
+    int n;
+    cin >> n;
+    cout << searchInsert(v1, n) << endl;
 
     return 0;
 }
